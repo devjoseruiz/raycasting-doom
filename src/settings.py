@@ -11,6 +11,8 @@ from typing import Tuple
 
 # Display settings
 WIDTH, HEIGHT = 1600, 900  # Screen resolution
+HALF_WIDTH = WIDTH // 2
+HALF_HEIGHT = HEIGHT // 2
 RES: Tuple[int, int] = WIDTH, HEIGHT
 FPS: int = 60  # Frames per second cap
 
@@ -27,3 +29,6 @@ NUM_RAYS = WIDTH // 2  # Number of rays
 HALF_NUM_RAYS = NUM_RAYS // 2
 DELTA_ANGLE = FOV / NUM_RAYS  # Angle between each ray
 MAX_DEPTH = 20  # Maximum depth of the raycast
+
+SCREEN_DIST = HALF_WIDTH / math.tan(HALF_FOV)
+SCALE = WIDTH // NUM_RAYS  # Scale factor

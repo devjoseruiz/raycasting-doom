@@ -31,6 +31,7 @@ class Game:
         delta_time (float): Time elapsed between frames
         map (Map): Game map instance
         player (Player): Player instance
+        raycasting (RayCasting): Raycasting instance
     """
 
     def __init__(self) -> None:
@@ -66,8 +67,8 @@ class Game:
         Clears the screen and draws the map and player.
         """
         self.screen.fill("black")
-        self.map.draw()
-        self.player.draw()
+        # self.map.draw()
+        # self.player.draw()
 
     def check_events(self) -> None:
         """
