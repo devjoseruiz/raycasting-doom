@@ -7,11 +7,13 @@ It handles the main game loop, initialization, and core game mechanics.
 """
 
 import sys
-import pygame as pg
 from typing import Any
+
+import pygame as pg
 
 from map import Map
 from player import Player
+from raycasting import *
 from settings import *
 
 
@@ -43,14 +45,16 @@ class Game:
         """Create a new game state with fresh map and player instances."""
         self.map = Map(self)
         self.player = Player(self)
+        self.raycasting = RayCasting(self)
 
     def update(self) -> None:
         """
         Update game state for the current frame.
-        
+
         Updates player position, refreshes display, and manages frame timing.
         """
         self.player.update()
+        self.raycasting.update()
         pg.display.flip()
         self.delta_time = self.clock.tick(FPS)
         pg.display.set_caption(f"{self.clock.get_fps() :.1f}")
@@ -58,7 +62,7 @@ class Game:
     def draw(self) -> None:
         """
         Render the current game state.
-        
+
         Clears the screen and draws the map and player.
         """
         self.screen.fill("black")
@@ -68,7 +72,7 @@ class Game:
     def check_events(self) -> None:
         """
         Handle game events including quit conditions.
-        
+
         Processes pygame events and handles game exit conditions (ESC key or window close).
         """
         for event in pg.event.get():
@@ -81,7 +85,7 @@ class Game:
     def run(self) -> None:
         """
         Main game loop.
-        
+
         Continuously runs the game by checking events, updating game state,
         and drawing to the screen.
         """

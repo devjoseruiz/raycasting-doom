@@ -108,19 +108,8 @@ class Player:
 
     def draw(self) -> None:
         """
-        Render the player's position and viewing direction on the screen.
+        Render the player's position on the screen.
         """
-        pg.draw.line(
-            self.game.screen,
-            "yellow",
-            (self.x * 100, self.y * 100),
-            (
-                self.x * 100 + WIDTH * math.cos(self.angle),
-                self.y * 100 + WIDTH * math.sin(self.angle),
-            ),
-            2,
-        )
-
         pg.draw.circle(self.game.screen, "green", (self.x * 100, self.y * 100), 15)
 
     def update(self) -> None:
