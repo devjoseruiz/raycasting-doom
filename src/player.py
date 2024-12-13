@@ -6,11 +6,14 @@ collision detection, and rendering for the Doom-style raycasting game.
 """
 
 import math
-from typing import Any, Tuple
+from typing import TYPE_CHECKING, Tuple
 
 import pygame as pg
 
 from settings import *
+
+if TYPE_CHECKING:
+    from main import Game
 
 
 class Player:
@@ -21,18 +24,18 @@ class Player:
     and rendering in the game world.
 
     Attributes:
-        game (Any): Reference to the main game instance
+        game (Game): Reference to the main game instance
         x (float): Player's x position in the game world
         y (float): Player's y position in the game world
         angle (float): Player's viewing angle in radians
     """
 
-    def __init__(self, game: Any) -> None:
+    def __init__(self, game: "Game") -> None:
         """
         Initialize a new player instance.
 
         Args:
-            game (Any): Reference to the main game instance
+            game (Game): Reference to the main game instance
         """
         self.game = game
         self.x, self.y = PLAYER_POS
@@ -100,10 +103,12 @@ class Player:
             dx (float): Attempted movement in x direction
             dy (float): Attempted movement in y direction
         """
-        if self.check_wall(int(self.x + dx), int(self.y)):
+        scale = PLAYER_SIZE_SCALE / self.game.delta_time
+
+        if self.check_wall(int(self.x + dx * scale), int(self.y)):
             self.x += dx
 
-        if self.check_wall(int(self.x), int(self.y + dy)):
+        if self.check_wall(int(self.x), int(self.y + dy * scale)):
             self.y += dy
 
     def draw(self) -> None:

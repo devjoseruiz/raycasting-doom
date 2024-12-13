@@ -35,3 +35,8 @@ poetry run python src/main.py
 ## License
 
 This project is released under the [GPLv3 License](LICENSE).
+
+## Credits
+
+- Wall textures by [mutantleg](https://opengameart.org/content/zortch-unused-textures).
+- Skybox by [MekWorx](http://mekworx.the-powerhouse.net).

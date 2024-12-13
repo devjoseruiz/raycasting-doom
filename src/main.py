@@ -12,6 +12,7 @@ from typing import Any
 import pygame as pg
 
 from map import Map
+from object_renderer import *
 from player import Player
 from raycasting import *
 from settings import *
@@ -31,6 +32,7 @@ class Game:
         delta_time (float): Time elapsed between frames
         map (Map): Game map instance
         player (Player): Player instance
+        object_renderer (ObjectRenderer): Object renderer instance
         raycasting (RayCasting): Raycasting instance
     """
 
@@ -46,6 +48,7 @@ class Game:
         """Create a new game state with fresh map and player instances."""
         self.map = Map(self)
         self.player = Player(self)
+        self.object_renderer = ObjectRenderer(self)
         self.raycasting = RayCasting(self)
 
     def update(self) -> None:
@@ -66,7 +69,8 @@ class Game:
 
         Clears the screen and draws the map and player.
         """
-        self.screen.fill("black")
+        # self.screen.fill("black")
+        self.object_renderer.draw()
         # self.map.draw()
         # self.player.draw()
 
