@@ -4,8 +4,8 @@ A simple Doom-style game implementation using raycasting technique and Pygame.
 
 ## Prerequisites
 
-- Python 3.12 or higher
-- Poetry (Python package manager)
+- Python 3.12 or higher.
+- Poetry (Python package manager).
 
 ## Installation
 
@@ -29,8 +29,8 @@ poetry run python src/main.py
 
 ## Game Controls
 
-- Use arrow keys to move forward/backward and turn left/right
-- Press ESC to exit the game
+- Use WASD to move around and arrow keys to turn left/right.
+- Press ESC to exit the game.
 
 ## License
 

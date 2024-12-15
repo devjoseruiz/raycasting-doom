@@ -7,11 +7,11 @@ It handles the main game loop, initialization, and core game mechanics.
 """
 
 import sys
-from typing import Any
 
 import pygame as pg
 
 from map import Map
+from object_handler import *
 from object_renderer import *
 from player import Player
 from raycasting import *
@@ -34,6 +34,7 @@ class Game:
         player (Player): Player instance
         object_renderer (ObjectRenderer): Object renderer instance
         raycasting (RayCasting): Raycasting instance
+        object_handler (ObjectHandler): Object handler instance
     """
 
     def __init__(self) -> None:
@@ -50,6 +51,7 @@ class Game:
         self.player = Player(self)
         self.object_renderer = ObjectRenderer(self)
         self.raycasting = RayCasting(self)
+        self.object_handler = ObjectHandler(self)
 
     def update(self) -> None:
         """
@@ -59,6 +61,7 @@ class Game:
         """
         self.player.update()
         self.raycasting.update()
+        self.object_handler.update()
         pg.display.flip()
         self.delta_time = self.clock.tick(FPS)
         pg.display.set_caption(f"{self.clock.get_fps() :.1f}")

@@ -39,9 +39,12 @@ SCALE: float = WIDTH // NUM_RAYS  # Scale factor
 
 # Resources settings
 BASE_PATH = Path(__file__).parent.parent
-TEXTURES_FOLDER = str(BASE_PATH / "resources" / "textures")
+TEXTURES_FOLDER = BASE_PATH / "resources" / "textures"
 
 # Texture settings
 TEXTURE_SIZE: int = 256
 HALF_TEXTURE_SIZE: int = TEXTURE_SIZE // 2
 FLOOR_COLOR = (30, 30, 30)
+
+# Sprite settings
+SPRITES_FOLDER = BASE_PATH / "resources" / "sprites"

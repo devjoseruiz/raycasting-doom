@@ -69,7 +69,9 @@ class ObjectRenderer:
         Objects are rendered in order from furthest to nearest to create
         proper depth perception.
         """
-        list_objects = self.game.raycasting.objects_to_render
+        list_objects = sorted(
+            self.game.raycasting.objects_to_render, key=lambda t: t[0], reverse=True
+        )
         for depth, image, pos in list_objects:
             self.screen.blit(image, pos)
 
@@ -82,25 +84,24 @@ class ObjectRenderer:
         """
         return {
             1: self.get_texture("walls/brickface.png"),
-            2: self.get_texture("walls/brickpez.png"),
-            3: self.get_texture("walls/brickquartz.png"),
-            4: self.get_texture("walls/brickruined.png"),
-            5: self.get_texture("walls/brickstone.png"),
-            6: self.get_texture("walls/comp.png"),
-            7: self.get_texture("walls/comp1.png"),
-            8: self.get_texture("walls/comp2.png"),
-            9: self.get_texture("walls/dirtbrown.png"),
-            10: self.get_texture("walls/dirtgray.png"),
-            11: self.get_texture("walls/dirtred.png"),
-            12: self.get_texture("walls/shipgratewall.png"),
-            13: self.get_texture("walls/shipventskin.png"),
-            14: self.get_texture("walls/shipwall.png"),
-            15: self.get_texture("walls/shipwall1.png"),
-            16: self.get_texture("walls/shipwall2.png"),
-            17: self.get_texture("walls/shipwall3.png"),
-            18: self.get_texture("walls/shipwall4.png"),
-            19: self.get_texture("walls/shipwall5.png"),
-            20: self.get_texture("walls/shipwall6.png"),
+            2: self.get_texture("walls/brickquartz.png"),
+            3: self.get_texture("walls/brickruined.png"),
+            4: self.get_texture("walls/brickstone.png"),
+            5: self.get_texture("walls/comp.png"),
+            6: self.get_texture("walls/comp1.png"),
+            7: self.get_texture("walls/comp2.png"),
+            8: self.get_texture("walls/dirtbrown.png"),
+            9: self.get_texture("walls/dirtgray.png"),
+            10: self.get_texture("walls/dirtred.png"),
+            11: self.get_texture("walls/shipgratewall.png"),
+            12: self.get_texture("walls/shipventskin.png"),
+            13: self.get_texture("walls/shipwall.png"),
+            14: self.get_texture("walls/shipwall1.png"),
+            15: self.get_texture("walls/shipwall2.png"),
+            16: self.get_texture("walls/shipwall3.png"),
+            17: self.get_texture("walls/shipwall4.png"),
+            18: self.get_texture("walls/shipwall5.png"),
+            19: self.get_texture("walls/shipwall6.png"),
         }
 
     @staticmethod
@@ -118,5 +119,5 @@ class ObjectRenderer:
         Returns:
             pygame.Surface: The loaded and scaled texture
         """
-        texture = pg.image.load(f"{TEXTURES_FOLDER}/{path}").convert_alpha()
+        texture = pg.image.load(str(TEXTURES_FOLDER / path)).convert_alpha()
         return pg.transform.scale(texture, res)
